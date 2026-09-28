@@ -1,23 +1,107 @@
 aid: bhanzu
 name: Bhanzu
-description: 'Bhanzu is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+image: https://bhanzu.com/og-images/book-demo-og.webp
+description: Bhanzu provides online math education platforms offering personalized, AI‑enhanced learning experiences for students across K‑12.
+  Founded by world‑record‑holding mental calculator Neelakantha Bhanu Prakash, the company delivers live interactive classes, practice tools,
+  and a suite of AI assistants to make math engaging and accessible worldwide. With over 50,000 students served, 3 million teaching hours, and
+  presence in 16 countries, Bhanzu aims to transform math fear into confidence through concept‑first teaching, growth‑mindset cultivation, and
+  data‑driven insights.
 url: https://raw.githubusercontent.com/api-evangelist/bhanzu/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-09-28 (modular-v1; was harvest)
 specificationVersion: '0.20'
 created: '2026-09-28'
 modified: '2026-09-28'
 tags:
-- Company
-apis: []
+- Education
+- Math
+- E‑learning
+- AI
+- K‑12
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/bhanzu-agentic-access.yml
+- type: Spectral
+  url: rules/bhanzu-rules.yml
+- type: JSONLD
+  url: json-ld/bhanzu-context.jsonld
+- type: Vocabulary
+  url: vocabulary/bhanzu-vocabulary.yml
+- type: DataModel
+  url: data-model/bhanzu-data-model.yml
+- type: ErrorCatalog
+  url: errors/bhanzu-problem-types.yml
+- type: Conformance
+  url: conformance/bhanzu-conformance.yml
+- type: LLMsTxt
+  url: llms/bhanzu-llms.txt
+- type: ToolCrosswalk
+  url: mcp/bhanzu-tool-crosswalk.yml
+- type: MCPServer
+  url: mcp/bhanzu-mcp.yml
+- type: WellKnown
+  url: well-known/bhanzu-well-known.yml
+- type: Hosts
+  url: hosts/bhanzu-hosts.yml
+- type: Vendors
+  url: vendors/bhanzu-vendors.yml
+- type: Documentation
+  url: https://dev.bhanzu.com/
+- type: DomainSecurity
+  url: security/bhanzu-domain-security.yml
 - type: Website
-  url: https://equityzen.com/company/bhanzu
+  url: https://bhanzu.com
+- type: Blog
+  url: https://bhanzu.com/blog
+- type: PrivacyPolicy
+  url: https://bhanzu.com/privacy-policy
+- type: TermsOfService
+  url: https://bhanzu.com/terms-and-conditions
+apis:
+- aid: bhanzu:bhanzu-ai-api
+  name: Bhanzu AI API
+  description: AI-readable content files and tools
+  humanURL: https://blog.bhanzu.com/
+  tags:
+  - AI
+  properties:
+  - type: OpenAPI
+    url: openapi/bhanzu-ai-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bhanzu-article-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/bhanzu-json-rpc-response-schema.json
+  - type: JSONSchema
+    url: json-schema/bhanzu-json-rpc-request-schema.json
+  - type: JSONSchema
+    url: json-schema/bhanzu-article-full-schema.json
+- aid: bhanzu:bhanzu-content-api
+  name: Bhanzu Content API
+  description: Published article content
+  humanURL: https://blog.bhanzu.com/
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/bhanzu-content-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bhanzu-article-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/bhanzu-json-rpc-response-schema.json
+  - type: JSONSchema
+    url: json-schema/bhanzu-json-rpc-request-schema.json
+  - type: JSONSchema
+    url: json-schema/bhanzu-article-full-schema.json
+x-enrichment:
+  date: '2026-09-28'
+  status: enriched
+  artifacts_added: 18
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

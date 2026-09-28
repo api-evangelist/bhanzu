@@ -1,0 +1,145 @@
+openapi: 3.2.0
+info:
+  title: Bhanzu CMS Public Content API
+  description: Read-only access to Bhanzu's published math learning content. All endpoints are unauthenticated and CORS-enabled.
+  version: 1.0.0
+  contact:
+    email: tech@bhanzu.com
+servers:
+- url: https://bhanzu.com
+  description: Production
+tags:
+- name: Content
+  description: Published article content
+paths:
+  /api/public/posts:
+    get:
+      summary: List published articles
+      description: Returns metadata for all published articles ordered by creation date (newest first). Does not include body HTML — use /api/public/posts/{slug} for full content.
+      operationId: listPosts
+      tags:
+      - Content
+      responses:
+        '200':
+          description: Array of article summaries
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArticleSummary'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /api/public/posts/{slug}:
+    get:
+      summary: Get article by slug
+      description: Returns the full article including body HTML. The slug can be either the short slug (e.g. "what-is-algebra") or the full path (e.g. "/math/what-is-algebra").
+      operationId: getPost
+      tags:
+      - Content
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: Article slug_path or full_path (URL-encoded)
+        schema:
+          type: string
+          example: what-is-algebra
+      responses:
+        '200':
+          description: Full article including body HTML
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleFull'
+        '404':
+          description: Article not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /api/public/sections:
+    get:
+      summary: List content sections
+      description: Returns all available content sections (e.g. math, algebra, science).
+      operationId: listSections
+      tags:
+      - Content
+      responses:
+        '200':
+          description: Array of section names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: math
+components:
+  schemas:
+    ArticleSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 42
+        slug:
+          type: string
+          example: what-is-algebra
+        full_path:
+          type: string
+          example: /math/what-is-algebra
+        section:
+          type: string
+          example: math
+        title:
+          type: string
+          example: What is Algebra?
+        meta_description:
+          type: string
+        excerpt:
+          type: string
+        page_type:
+          type: string
+          example: blog-post
+        author:
+          type: string
+          example: Bhanzu Team
+        reviewed_by:
+          type: string
+        tags:
+          type: string
+          example: algebra,math,equations
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ArticleFull:
+      allOf:
+      - $ref: '#/components/schemas/ArticleSummary'
+      - type: object
+        properties:
+          body:
+            type: string
+            description: Full article content as HTML
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+  responses:
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

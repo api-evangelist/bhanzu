@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bhanzu/main/json-schema/bhanzu-json-rpc-response-schema.json",
+  "title": "JsonRpcResponse",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/bhanzu-openapi.yml#/components/schemas/JsonRpcResponse",
+  "type": "object",
+  "required": [
+    "jsonrpc"
+  ],
+  "properties": {
+    "jsonrpc": {
+      "type": "string",
+      "enum": [
+        "2.0"
+      ]
+    },
+    "id": {
+      "oneOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "result": {
+      "type": "object"
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

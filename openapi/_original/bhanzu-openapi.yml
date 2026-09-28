@@ -1,0 +1,214 @@
+# x-archived-from: bhanzu-openapi.yml
+# x-archived-on: 2026-09-28
+openapi: "3.0.3"
+info:
+  title: "Bhanzu CMS Public API"
+  description: >
+    Read-only access to Bhanzu's published math learning content.
+    All endpoints are unauthenticated and CORS-enabled.
+  version: "1.0.0"
+  contact:
+    email: tech@bhanzu.com
+servers:
+  - url: https://bhanzu.com
+    description: Production
+
+tags:
+  - name: Content
+    description: Published article content
+  - name: AI
+    description: AI-readable content files and tools
+
+paths:
+  /api/public/posts:
+    get:
+      summary: List published articles
+      description: >
+        Returns metadata for all published articles ordered by creation date
+        (newest first). Does not include body HTML — use /api/public/posts/{slug}
+        for full content.
+      operationId: listPosts
+      tags: [Content]
+      responses:
+        "200":
+          description: Array of article summaries
+          headers:
+            Access-Control-Allow-Origin:
+              schema: { type: string, example: "*" }
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ArticleSummary"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /api/public/posts/{slug}:
+    get:
+      summary: Get article by slug
+      description: >
+        Returns the full article including body HTML. The slug can be either
+        the short slug (e.g. "what-is-algebra") or the full path
+        (e.g. "/math/what-is-algebra").
+      operationId: getPost
+      tags: [Content]
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: Article slug_path or full_path (URL-encoded)
+          schema:
+            type: string
+            example: what-is-algebra
+      responses:
+        "200":
+          description: Full article including body HTML
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArticleFull"
+        "404":
+          description: Article not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /api/public/sections:
+    get:
+      summary: List content sections
+      description: Returns all available content sections (e.g. math, algebra, science).
+      operationId: listSections
+      tags: [Content]
+      responses:
+        "200":
+          description: Array of section names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: math
+
+  /api/mcp:
+    post:
+      summary: MCP tool server
+      description: >
+        Model Context Protocol (MCP) endpoint using Streamable HTTP transport.
+        Accepts JSON-RPC 2.0 requests and returns tool results.
+        Supported methods: initialize, tools/list, tools/call.
+        Available tools: search_articles, get_article, list_sections, get_site_info.
+      operationId: mcpPost
+      tags: [AI]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JsonRpcRequest"
+      responses:
+        "200":
+          description: JSON-RPC 2.0 response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JsonRpcResponse"
+
+  /llms.txt:
+    get:
+      summary: LLM-readable site index
+      description: >
+        Short index of all published content following the llmstxt.org spec.
+        Suitable for AI assistants that need to know what content exists.
+      operationId: getLlmsTxt
+      tags: [AI]
+      responses:
+        "200":
+          description: Plain-text LLM site index
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /llms-full.txt:
+    get:
+      summary: LLM-readable full content index
+      description: >
+        Expanded per-article summaries for AI crawlers. Contains one block
+        per published article with URL, last-updated date, and excerpt/summary.
+      operationId: getLlmsFullTxt
+      tags: [AI]
+      responses:
+        "200":
+          description: Plain-text LLM full content index
+          content:
+            text/plain:
+              schema:
+                type: string
+
+components:
+  schemas:
+    ArticleSummary:
+      type: object
+      properties:
+        id:               { type: integer, example: 42 }
+        slug:             { type: string,  example: "what-is-algebra" }
+        full_path:        { type: string,  example: "/math/what-is-algebra" }
+        section:          { type: string,  example: "math" }
+        title:            { type: string,  example: "What is Algebra?" }
+        meta_description: { type: string }
+        excerpt:          { type: string }
+        page_type:        { type: string,  example: "blog-post" }
+        author:           { type: string,  example: "Bhanzu Team" }
+        reviewed_by:      { type: string }
+        tags:             { type: string,  example: "algebra,math,equations" }
+        created_at:       { type: string,  format: date-time }
+        updated_at:       { type: string,  format: date-time }
+
+    ArticleFull:
+      allOf:
+        - $ref: "#/components/schemas/ArticleSummary"
+        - type: object
+          properties:
+            body:
+              type: string
+              description: Full article content as HTML
+
+    JsonRpcRequest:
+      type: object
+      required: [jsonrpc, method]
+      properties:
+        jsonrpc: { type: string, enum: ["2.0"] }
+        id:      { oneOf: [{ type: integer }, { type: string }] }
+        method:  { type: string, example: "tools/call" }
+        params:  { type: object }
+
+    JsonRpcResponse:
+      type: object
+      required: [jsonrpc]
+      properties:
+        jsonrpc: { type: string, enum: ["2.0"] }
+        id:      { oneOf: [{ type: integer }, { type: string }, { type: "null" }] }
+        result:  { type: object }
+        error:
+          type: object
+          properties:
+            code:    { type: integer }
+            message: { type: string }
+
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+
+  responses:
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"

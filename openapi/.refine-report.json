@@ -1,0 +1,20 @@
+{
+  "provider": "bhanzu",
+  "sources": [
+    "bhanzu-openapi.yml"
+  ],
+  "outputs": [
+    "bhanzu-ai-api-openapi.yml",
+    "bhanzu-content-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/bhanzu-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "bhanzu-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+2 apis, 2 total)"
+  ],
+  "skipped": []
+}

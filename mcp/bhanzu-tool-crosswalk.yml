@@ -1,0 +1,31 @@
+generated: '2026-09-28'
+method: derived
+source: https://blog.bhanzu.com/api/mcp
+crosswalk:
+  - tool: search_articles
+    category: content
+    rest: [listPosts]
+    binding: high
+    confidence: high
+    note: maps to listPosts operation
+  - tool: get_article
+    category: content
+    rest: [getPost]
+    binding: high
+    confidence: high
+    note: maps to getPost operation
+  - tool: list_sections
+    category: content
+    rest: [listSections]
+    binding: high
+    confidence: high
+    note: maps to listSections operation
+  - tool: get_site_info
+    category: meta
+    rest: [mcpPost]
+    binding: high
+    confidence: medium
+    note: approximate mapping to mcpPost operation
+coverage:
+  total_tools: 4
+  mapped_tools: 4
