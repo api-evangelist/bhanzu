@@ -1,20 +1,22 @@
 {
   "provider": "bhanzu",
   "sources": [
-    "bhanzu-openapi.yml"
+    "_original/bhanzu-openapi.yml"
   ],
   "outputs": [
     "bhanzu-ai-api-openapi.yml",
     "bhanzu-content-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/bhanzu-openapi.yml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "bhanzu-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: written (+2 apis, 2 total)"
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "bhanzu-ai-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bhanzu-content-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

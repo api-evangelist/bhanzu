@@ -62,6 +62,25 @@ paths:
                 type: string
 components:
   schemas:
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      properties:
+        jsonrpc:
+          type: string
+          enum:
+          - '2.0'
+        id:
+          oneOf:
+          - type: integer
+          - type: string
+        method:
+          type: string
+          example: tools/call
+        params:
+          type: object
     JsonRpcResponse:
       type: object
       required:
@@ -85,22 +104,3 @@ components:
               type: integer
             message:
               type: string
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      properties:
-        jsonrpc:
-          type: string
-          enum:
-          - '2.0'
-        id:
-          oneOf:
-          - type: integer
-          - type: string
-        method:
-          type: string
-          example: tools/call
-        params:
-          type: object
