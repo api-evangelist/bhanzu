@@ -123,11 +123,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
     ArticleFull:
       allOf:
       - $ref: '#/components/schemas/ArticleSummary'
@@ -136,6 +131,11 @@ components:
           body:
             type: string
             description: Full article content as HTML
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
   responses:
     InternalError:
       description: Internal server error
