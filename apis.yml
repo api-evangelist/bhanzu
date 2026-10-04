@@ -17,6 +17,12 @@ modified: '2026-09-28'
 tags:
 - Education
 - Math
+- E-Learning
+- Artificial Intelligence
+- K-12
+tags_raw:
+- Education
+- Math
 - E‑learning
 - AI
 - K‑12
@@ -70,6 +76,8 @@ apis:
   description: AI-readable content files and tools
   humanURL: https://blog.bhanzu.com/
   tags:
+  - Artificial Intelligence
+  tags_raw:
   - AI
   properties:
   - type: OpenAPI
