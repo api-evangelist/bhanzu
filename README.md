@@ -64,5 +64,123 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Bhanzu is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://equityzen.com/company/bhanzu
+Bhanzu provides online math education platforms offering personalized, AI‑enhanced learning experiences for students across K‑12. Founded by world‑record‑holding mental calculator Neelakantha Bhanu Prakash, the company delivers live interactive classes, practice tools, and a suite of AI assistants to make math engaging and accessible worldwide. With over 50,000 students served, 3 million teaching hours, and presence in 16 countries, Bhanzu aims to transform math fear into confidence through concept‑first teaching, growth‑mindset cultivation, and data‑driven insights.
+
+**Areas:** Education · Math · E-Learning · Artificial Intelligence · K-12
+
+## Bhanzu on APIs.io
+
+Everything profiled for Bhanzu is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bhanzu/](https://apis.io/providers/bhanzu/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Bhanzu AI API](https://apis.io/apis/bhanzu/bhanzu-ai-api/) — AI-readable content files and tools
+- [Bhanzu Content API](https://apis.io/apis/bhanzu/bhanzu-content-api/) — Published article content
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [bhanzu-mcp.yml](https://apis.io/servers/bhanzu/bhanzu-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Bhanzu Agentic Access](https://apis.io/agentic-access/bhanzu/bhanzu-agentic-access/)
+
+#### JSON Schema (4)
+
+The data models the API reads and writes.
+
+- [ArticleFull](https://apis.io/schemas/bhanzu/bhanzu-article-full/)
+- [ArticleSummary](https://apis.io/schemas/bhanzu/bhanzu-article-summary/)
+- [JsonRpcRequest](https://apis.io/schemas/bhanzu/bhanzu-json-rpc-request/)
+- [JsonRpcResponse](https://apis.io/schemas/bhanzu/bhanzu-json-rpc-response/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Bhanzu Context](https://apis.io/jsonld/bhanzu/bhanzu-context/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Bhanzu API Rules](https://apis.io/rules/bhanzu/bhanzu-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bhanzu Domain Security](https://apis.io/security/bhanzu/bhanzu-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://bhanzu.com)
+- [Documentation](https://dev.bhanzu.com/)
+- [Blog](https://bhanzu.com/blog)
+- [Terms of service](https://bhanzu.com/terms-and-conditions)
+- [Privacy policy](https://bhanzu.com/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 29.0** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.7 |
+| Contract quality | 55.9 |
+| Contract governance | 22.0 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 21.1 |
+
+**Agent readiness 22.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 17.3** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bhanzu/](https://apis.io/providers/bhanzu/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bhanzu: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bhanzu/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
